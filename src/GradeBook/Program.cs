@@ -1,28 +1,20 @@
 ﻿using System;
 
-class GradeBookMain
+namespace GradeBook
 {
-    static void Main(string[] args)
+
+    class Program
     {
-        var numbers = new[] {12.7, 10.3, 6.11};
-
-        var result = 0.0;
-
-        foreach(double number in numbers)
+        static void Main(string[] args)
         {
-            result += number;
-        }
+            
+            var book = new Book("Erin Kyle");
+            book.AddGrade(89.1);
+            book.AddGrade(30.2);
+            book.AddGrade(65.5);
 
-        // Display the number of command line arguments.
-        if(args.Length > 0)
-        {
-        Console.WriteLine($"Hello, {args[1]}!");
+            book.showStatistics();
+            
         }
-        else
-        {
-            Console.WriteLine("Hello, World!");
-        }
-        
-        System.Console.WriteLine(result);
     }
 }
