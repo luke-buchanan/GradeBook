@@ -9,9 +9,44 @@ namespace GradeBook
             Name = name;
         }
 
+        public void AddGrade(char letter)
+        {
+            switch(letter)
+            {
+                case 'A':
+                    AddGrade(90);
+                    break;
+                case 'B':
+                    AddGrade(80);
+                    break;
+                case 'C':
+                    AddGrade(70);
+                    break;
+                case 'D':
+                    AddGrade(60);
+                    break;
+                case 'F':
+                    AddGrade(50);
+                    break;
+                default:
+                    AddGrade(0);
+                    break;
+                
+                
+            }
+        }
+
         public void AddGrade(double grade)
         {
-            grades.Add(grade);
+            if(grade <= 100 && grade >= 0)
+            {
+                grades.Add(grade);
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid {nameof(grade)}");
+            }
+            
         }
 
         public Statistics getStatistics()
@@ -32,12 +67,38 @@ namespace GradeBook
 
             result.Average /= grades.Count;
 
+            switch(result.Average)
+            {
+                case var d when d >= 90.0:
+                    result.letter = 'A';
+                    break;
+                case var d when d >= 80.0:
+                    result.letter = 'B';
+                    break;
+                case var d when d >= 70.0:
+                    result.letter = 'C';
+                    break;
+                case var d when d >= 60.0:
+                    result.letter = 'D';
+                    break;
+                default:
+                    result.letter = 'F';
+                    break;
+            }
+
             return result;
         }
 
 
         private List<double> grades;
-        public string Name;
+
+        public string Name
+        {
+            get; 
+            set;
+        }
+        
+        public const string CATEGORY = "Science";
 
     }
 
